@@ -44,5 +44,31 @@
 .toggle-btn {
 	padding: 16px;
 	border: 1px solid black;
-	color: black;
+	color: white;
+	background: green;
+}
+
+.switch-container {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 16px;
+	height: 80px;
+	width: 200px;
+}
+
+.cart .switch-container {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 16px;
+	height: 80px;
+	width: 200px;
+}
+
+.switch-container span {
+	display: inline-block;
+	font-size: 16px;
 }

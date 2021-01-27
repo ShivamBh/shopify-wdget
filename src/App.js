@@ -1,10 +1,11 @@
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import Toggle from "./components/Toggle";
 
-function App() {
+function App(props) {
 	return (
 		<div className="App">
-			<Toggle />
+			<Toggle cartItem={props.cartItem} />
 		</div>
 	);
 }

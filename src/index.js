@@ -9,9 +9,13 @@ const WidgetDivs = document.querySelectorAll(".toggle-widget");
 
 // inject react instances to one or all of the entrypoint divs
 WidgetDivs.forEach(Div => {
+	console.log("This Div", Number(Div.getAttribute("data-variant-id")));
+	const cartItem = {
+		id: Number(Div.getAttribute("data-variant-id"))
+	};
 	ReactDOM.render(
 		<React.StrictMode>
-			<App />
+			<App cartItem={cartItem.id ? cartItem : null} />
 		</React.StrictMode>,
 		Div
 	);
