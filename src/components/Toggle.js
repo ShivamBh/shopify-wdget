@@ -12,7 +12,7 @@ import ajax from "../utils/ajax";
 const Toggle = props => {
 	const [toggleState, setToggleState] = useState(false);
 	const [itemInCart, setItemInCart] = useState(false);
-	const { cartItem } = props;
+	const { cartItem, position } = props;
 
 	let formStuffAdd = {
 		id: cartItem ? cartItem.id : 37986294497473,
@@ -74,27 +74,37 @@ const Toggle = props => {
 
 	return (
 		<>
-			<div className="toggle-container">
-				{/* <button onClick={handleClick} className="toggle-btn">
+			<div className="toggle-wrapper">
+				<div className="toggle-container">
+					{/* <button onClick={handleClick} className="toggle-btn">
 					Plant Trees
         </button> */}
-				<label className="switch-container">
-					<span>Plant Trees</span>
-					<Switch
-						onChange={handleToggle}
-						checked={toggleState}
-						onColor="#8ce0b5"
-						onHandleColor="#3c8633"
-						handleDiameter={30}
-						uncheckedIcon={false}
-						checkedIcon={false}
-						boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
-						activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
-						height={20}
-						width={48}
-						className="react-switch"
-					/>
-				</label>
+					<div class="toggle-logo"></div>
+					<label className="switch-container">
+						<div className="toggle-content">
+							<span className="toggle-title">Plant a Tree</span>
+							<span className="toggle-subtitle">
+								Offset CO2 with Ecodrive for <b>$0.65</b>
+							</span>
+						</div>
+						<Switch
+							onChange={handleToggle}
+							checked={toggleState}
+							onColor="#8ce0b5"
+							onHandleColor="#3c8633"
+							offColor="#ccc"
+							offHandleColor="#fff"
+							handleDiameter={20}
+							uncheckedIcon={false}
+							checkedIcon={false}
+							boxShadow="0px 1px 5px rgba(0, 0, 0, 0.24)"
+							activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.24)"
+							height={24}
+							width={48}
+							className="react-switch"
+						/>
+					</label>
+				</div>
 			</div>
 		</>
 	);

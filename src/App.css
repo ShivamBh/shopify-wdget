@@ -38,24 +38,50 @@
 }
 
 .toggle-container {
-	margin-bottom: 24px;
+	width: 256px;
+	margin-bottom: 1rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
-.toggle-btn {
+.toggle-logo {
+	height: 3rem;
+	width: 3rem;
+	/* background-color: black; */
+	background-image: url("https://i.imgur.com/Jc3igg7.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.toggle-content {
+	padding: 0 1rem;
+}
+
+.toggle-title {
+	font-size: 1.125rem;
+	font-weight: 600;
+	margin-bottom: 0.125rem;
+}
+
+.toggle-subtitle {
+	font-size: 0.675rem;
+}
+
+/* .toggle-btn {
 	padding: 16px;
 	border: 1px solid black;
 	color: white;
 	background: green;
-}
+} */
 
 .switch-container {
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 16px;
-	height: 80px;
-	width: 200px;
+	text-align: left;
 }
 
 .cart .switch-container {
@@ -63,12 +89,8 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 16px;
-	height: 80px;
-	width: 200px;
 }
 
 .switch-container span {
-	display: inline-block;
-	font-size: 16px;
+	display: block;
 }
