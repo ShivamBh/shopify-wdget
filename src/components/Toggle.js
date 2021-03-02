@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from "react";
-// import Client from "shopify-buy";
+import PropTypes from "prop-types";
 import Switch from "react-switch";
 
 import ajax from "../utils/ajax";
 
-// const client = Client.buildClient({
-// 	domain: "hemisphereco.myshopify.com",
-// 	storefrontAccessToken: "3dd522be200f102742efb18307de0481"
-// });
-
 const Toggle = props => {
 	const [toggleState, setToggleState] = useState(false);
 	const [itemInCart, setItemInCart] = useState(false);
-	const { cartItem, position } = props;
+	const { cartItem, toggleProps } = props;
+
+	const { storeName, autoToggle, position, tooltip, variantId } = toggleProps;
 
 	let formStuffAdd = {
 		id: cartItem ? cartItem.id : 37986294497473,
@@ -26,12 +23,6 @@ const Toggle = props => {
 
 	const handleToggle = () => {
 		setToggleState(!toggleState);
-
-		// if toggleState true and itemInCart false
-		// add to cart
-
-		// if toggleState true and itemInCart True
-		// remove from cart
 	};
 
 	const checkItemInCart = cartItems => {
@@ -54,14 +45,6 @@ const Toggle = props => {
 					setToggleState(true);
 				}
 			});
-
-		// check if item in cart
-
-		// if item in cart, toggle switch to true
-		// if (checkItemInCart(items)) {
-		// 	setItemInCart(true);
-		// 	setToggleState(true);
-		// }
 	}, []);
 
 	useEffect(() => {

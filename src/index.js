@@ -13,9 +13,18 @@ WidgetDivs.forEach(Div => {
 	const cartItem = {
 		id: Number(Div.getAttribute("data-variant-id"))
 	};
+
+	const toggleProps = {
+		storeName: Div.getAttribute("data-storeName") || null,
+		autoToggle: Div.getAttribute("data-autoToggle") || true,
+		position: Div.getAttribute("data-position") || "center",
+		tooltip: Div.getAttribute("data-tooltip") || false,
+		variantId: Div.getAttribute("data-variantId") || 37986294497473
+	};
+
 	ReactDOM.render(
 		<React.StrictMode>
-			<App cartItem={cartItem.id ? cartItem : null} />
+			<App cartItem={cartItem.id ? cartItem : null} toggleProps={toggleProps} />
 		</React.StrictMode>,
 		Div
 	);
