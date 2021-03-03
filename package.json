@@ -24,7 +24,7 @@
 		"eject": "react-scripts eject",
 		"build:widget": "parcel build src/index.js --no-source-maps -d docs",
 		"predeploy": "parcel build src/index.js --no-source-maps -d docs",
-		"deploy": "gh-pages -d docs"
+		"deploy": "parcel build src/index.js --no-source-maps -d docs && gh-pages -d docs"
 	},
 	"eslintConfig": {
 		"extends": [
@@ -42,11 +42,9 @@
 			"since 2017-06"
 		]
 	},
-	"resolve": {
-		"alias": {
-			"react": "preact-compat",
-			"react-dom": "preact-compat"
-		}
+	"alias": {
+		"react": "preact/compat",
+		"react-dom": "preact/compat"
 	},
 	"devDependencies": {
 		"gh-pages": "^3.1.0",
