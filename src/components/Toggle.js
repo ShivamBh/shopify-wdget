@@ -15,16 +15,6 @@ const Toggle = props => {
 	const [itemInCart, setItemInCart] = useState(false);
 	const { autoToggle, position, tooltip, variantId } = props;
 
-	// let formStuffAdd = {
-	// 	id: cartItem ? cartItem.id : 37986294497473,
-	// 	quantity: 1
-	// };
-
-	// let formStuffRemove = {
-	// 	id: cartItem ? cartItem.id : 37986294497473,
-	// 	quantity: 0
-	// };
-
 	const handleToggle = () => {
 		setToggleState(!toggleState);
 	};
@@ -38,18 +28,6 @@ const Toggle = props => {
 		});
 		return exists;
 	};
-
-	useEffect(() => {
-		fetch("/cart.json")
-			.then(response => response.json())
-			.then(data => {
-				console.log("Currently in Cart", data);
-				if (checkItemInCart(data.items)) {
-					setItemInCart(true);
-					setToggleState(true);
-				}
-			});
-	}, []);
 
 	const addEcodrive = () => {
 		console.log("Form Data Add", {
@@ -90,6 +68,23 @@ const Toggle = props => {
 			removeEcodrive();
 		}
 	}, [toggleState]);
+
+	useEffect(() => {
+		fetch("/cart.json")
+			.then(response => response.json())
+			.then(data => {
+				console.log("Currently in Cart", data);
+				if (checkItemInCart(data.items)) {
+					setItemInCart(true);
+					setToggleState(true);
+				}
+			});
+
+		if (!itemInCart && autoToggle) {
+			addEcodrive();
+		}
+	}, []);
+
 	console.log("dep2");
 
 	return (
