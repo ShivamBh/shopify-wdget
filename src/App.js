@@ -3,11 +3,7 @@ import "./App.css";
 import Toggle from "./components/Toggle";
 
 function App(props) {
-	return (
-		<div className="App">
-			<Toggle cartItem={props.cartItem} />
-		</div>
-	);
+	return <Toggle cartItem={props.cartItem} toggleProps={props.toggleProps} />;
 }
 
 export default App;

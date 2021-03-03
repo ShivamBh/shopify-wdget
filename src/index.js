@@ -15,12 +15,14 @@ WidgetDivs.forEach(Div => {
 	};
 
 	const toggleProps = {
-		storeName: Div.getAttribute("data-storeName") || null,
-		autoToggle: Div.getAttribute("data-autoToggle") || true,
+		storeName: Div.getAttribute("data-storeName"),
+		autoToggle: Div.getAttribute("data-autoToggle"),
 		position: Div.getAttribute("data-position") || "center",
-		tooltip: Div.getAttribute("data-tooltip") || false,
+		tooltip: Div.getAttribute("data-tooltip"),
 		variantId: Div.getAttribute("data-variantId") || 37986294497473
 	};
+
+	console.log("This Div", toggleProps);
 
 	ReactDOM.render(
 		<React.StrictMode>
