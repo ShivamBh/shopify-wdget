@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Switch from "react-switch";
-
 import ajax from "../utils/ajax";
+
+const propTypes = {
+	autoToggle: PropTypes.bool,
+	position: PropTypes.oneOf(["left", "center", "right"]),
+	tooltip: PropTypes.bool,
+	variantId: PropTypes.string
+};
 
 const Toggle = props => {
 	const [toggleState, setToggleState] = useState(false);
@@ -39,7 +45,7 @@ const Toggle = props => {
 		fetch("/cart.json")
 			.then(response => response.json())
 			.then(data => {
-				console.log("Fetch Cart Data", data);
+				console.log("Currently in Cart", data);
 				if (checkItemInCart(data.items)) {
 					setItemInCart(true);
 					setToggleState(true);
@@ -57,12 +63,12 @@ const Toggle = props => {
 
 	return (
 		<>
-			<div className="toggle-wrapper">
+			<div className={`toggle-wrapper toggle-${position}`}>
 				<div className="toggle-container">
 					{/* <button onClick={handleClick} className="toggle-btn">
 					Plant Trees
         </button> */}
-					<div class="toggle-logo"></div>
+					<div className="toggle-logo"></div>
 					<label className="switch-container">
 						<div className="toggle-content">
 							<span className="toggle-title">Plant a Tree</span>
@@ -92,5 +98,7 @@ const Toggle = props => {
 		</>
 	);
 };
+
+Toggle.propTypes = propTypes;
 
 export default Toggle;
