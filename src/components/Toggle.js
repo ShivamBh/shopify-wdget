@@ -32,7 +32,7 @@ const Toggle = props => {
 	const checkItemInCart = cartItems => {
 		let exists = false;
 		cartItems.forEach(_item => {
-			if (_item.id === parseInt(variantId)) {
+			if (_item.id === Number(variantId)) {
 				exists = true;
 			}
 		});
@@ -51,24 +51,46 @@ const Toggle = props => {
 			});
 	}, []);
 
+	const addEcodrive = () => {
+		console.log("Form Data Add", {
+			id: Number(variantId),
+			quantity: 1
+		});
+		ajax.post(
+			"/cart/add.js",
+			{
+				id: Number(variantId),
+				quantity: 1
+			},
+			() => {
+				console.log("ajax post success");
+			}
+		);
+	};
+
+	const removeEcodrive = () => {
+		ajax.post(
+			"/cart/update.js",
+			{
+				updates: {
+					[Number(variantId)]: 0
+				}
+			},
+			() => {
+				console.log("Removed Eco product");
+			}
+		);
+	};
+
 	useEffect(() => {
 		if (toggleState && !itemInCart) {
-			console.log("Form Data Add", {
-				id: parseInt(variantId),
-				quantity: 1
-			});
-			ajax.post(
-				"/cart/add.js",
-				{
-					id: parseInt(variantId),
-					quantity: 1
-				},
-				() => {
-					console.log("ajax post success");
-				}
-			);
+			addEcodrive();
+		}
+		if (!toggleState && itemInCart) {
+			removeEcodrive();
 		}
 	}, [toggleState]);
+	console.log("dep2");
 
 	return (
 		<>
