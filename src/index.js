@@ -9,24 +9,18 @@ const WidgetDivs = document.querySelectorAll(".toggle-widget");
 
 // inject react instances to one or all of the entrypoint divs
 WidgetDivs.forEach(Div => {
-	console.log("This Div", Number(Div.getAttribute("data-variant-id")));
-	const cartItem = {
-		id: Number(Div.getAttribute("data-variant-id"))
-	};
-
 	const toggleProps = {
-		storeName: Div.getAttribute("data-storeName"),
-		autoToggle: Div.getAttribute("data-autoToggle"),
+		autoToggle: Div.getAttribute("data-autoToggle") || false,
 		position: Div.getAttribute("data-position") || "center",
-		tooltip: Div.getAttribute("data-tooltip"),
-		variantId: Div.getAttribute("data-variantId") || 37986294497473
+		tooltip: Div.getAttribute("data-tooltip") || false,
+		variantId: Div.getAttribute("data-variantId") || null
 	};
 
-	console.log("This Div", toggleProps);
+	console.log("This Div", Div);
 
 	ReactDOM.render(
 		<React.StrictMode>
-			<App cartItem={cartItem.id ? cartItem : null} toggleProps={toggleProps} />
+			<App toggleProps={toggleProps} />
 		</React.StrictMode>,
 		Div
 	);

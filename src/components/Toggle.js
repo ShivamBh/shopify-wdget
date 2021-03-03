@@ -7,25 +7,23 @@ const propTypes = {
 	autoToggle: PropTypes.bool,
 	position: PropTypes.oneOf(["left", "center", "right"]),
 	tooltip: PropTypes.bool,
-	variantId: PropTypes.string
+	variantId: PropTypes.string.isRequired
 };
 
 const Toggle = props => {
 	const [toggleState, setToggleState] = useState(false);
 	const [itemInCart, setItemInCart] = useState(false);
-	const { cartItem, toggleProps } = props;
+	const { autoToggle, position, tooltip, variantId } = props;
 
-	const { storeName, autoToggle, position, tooltip, variantId } = toggleProps;
+	// let formStuffAdd = {
+	// 	id: cartItem ? cartItem.id : 37986294497473,
+	// 	quantity: 1
+	// };
 
-	let formStuffAdd = {
-		id: cartItem ? cartItem.id : 37986294497473,
-		quantity: 1
-	};
-
-	let formStuffRemove = {
-		id: cartItem ? cartItem.id : 37986294497473,
-		quantity: 0
-	};
+	// let formStuffRemove = {
+	// 	id: cartItem ? cartItem.id : 37986294497473,
+	// 	quantity: 0
+	// };
 
 	const handleToggle = () => {
 		setToggleState(!toggleState);
@@ -34,7 +32,7 @@ const Toggle = props => {
 	const checkItemInCart = cartItems => {
 		let exists = false;
 		cartItems.forEach(_item => {
-			if (_item.id === formStuffAdd.id) {
+			if (_item.id === parseInt(variantId)) {
 				exists = true;
 			}
 		});
@@ -55,9 +53,20 @@ const Toggle = props => {
 
 	useEffect(() => {
 		if (toggleState && !itemInCart) {
-			ajax.post("/cart/add.js", formStuffAdd, () => {
-				console.log("ajax post success");
+			console.log("Form Data Add", {
+				id: parseInt(variantId),
+				quantity: 1
 			});
+			ajax.post(
+				"/cart/add.js",
+				{
+					id: parseInt(variantId),
+					quantity: 1
+				},
+				() => {
+					console.log("ajax post success");
+				}
+			);
 		}
 	}, [toggleState]);
 
