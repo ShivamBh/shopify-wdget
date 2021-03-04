@@ -80,12 +80,10 @@ const Toggle = props => {
 				}
 			});
 
-		if (!itemInCart && autoToggle) {
-			addEcodrive();
+		if (!itemInCart && autoToggle === "true") {
+			setToggleState(!toggleState);
 		}
 	}, []);
-
-	console.log("dep2");
 
 	return (
 		<>
