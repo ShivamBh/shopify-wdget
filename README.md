@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Ecodrive shopify widget documentation
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was built using React(Preact), Parcel and Shopify AJAX API.
 
 ## Available Scripts
 
@@ -13,11 +13,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `yarn build`
 
@@ -39,32 +34,27 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+### `yarn predeploy`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+This command uses the Parcel bundler to compile the code and return static files(index.js and index.css) which can be served from any static hosting of your choice. By default, it will output the static files to docs folder(which can be edited to output to the folder of your choice).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### `yarn deploy`
 
-### Code Splitting
+This command is a composite command which combines predeploy with deploying to github pages.
+**Note: You have configure your github pages for the deploy to work**
+**Note: You can configure the command to deploy to any static hosting of your choice such as Amazon S3**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Usage
 
-### Analyzing the Bundle Size
+Use 'yarn predeploy' or 'npm run predeploy' to build the static js and css files and serve them through a static hosting of your choice.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Include the 'link' and 'script' tags before the end of body tags in the theme.liquid files of your shopify store.
 
-### Making a Progressive Web App
+In your cart page add a div tag will class 'toggle-widget' like so:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+<div class="toggle-widget" data-variantId="64729472629" data-autoToggle="true" data-position="center"></div>
 
-### Advanced Configuration
+Add this code to where you would want your component to appear.
+In case your cart component uses modals and sliders you may need to add the code there as well.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The toggle accepts three values, the variantId of the Ecodrive product in the store, autoToggle to automatically add the Ecodrive product to the cart and position to render the component in left, right or center.
