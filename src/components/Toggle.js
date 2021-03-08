@@ -4,9 +4,9 @@ import Switch from "react-switch";
 import ajax from "../utils/ajax";
 
 const propTypes = {
-	autoToggle: PropTypes.bool,
+	autoToggle: PropTypes.string,
 	position: PropTypes.oneOf(["left", "center", "right"]),
-	tooltip: PropTypes.bool,
+	tooltip: PropTypes.string,
 	variantId: PropTypes.string.isRequired
 };
 
@@ -21,29 +21,44 @@ const Toggle = props => {
 
 	const checkItemInCart = cartItems => {
 		let exists = false;
-		cartItems.forEach(_item => {
-			if (_item.id === Number(variantId)) {
-				exists = true;
-			}
-		});
+		if (cartItems && cartItems.length > 0) {
+			cartItems.forEach(_item => {
+				if (_item.id === Number(variantId)) {
+					exists = true;
+					return exists;
+				}
+			});
+		}
+
 		return exists;
 	};
 
 	const addEcodrive = () => {
-		console.log("Form Data Add", {
-			id: Number(variantId),
-			quantity: 1
+		const lineItems = {
+			items: [
+				{
+					id: Number(variantId),
+					quantity: 1
+				}
+			]
+		};
+		ajax.post("/cart/add.js", lineItems, () => {
+			console.log("Added Ecodrive to Cart");
+			setToggleState(true);
 		});
-		ajax.post(
-			"/cart/add.js",
-			{
-				id: Number(variantId),
-				quantity: 1
-			},
-			() => {
-				console.log("ajax post success");
-			}
-		);
+		// fetch("/cart/add.js", {
+		// 	method: "POST",
+		// 	headers: {
+		// 		"Content-Type": "application/json"
+		// 	},
+		// 	body: JSON.stringify(lineItems)
+		// })
+		// 	.then(response => {
+		// 		console.log("Success adding", response.json());
+		// 	})
+		// 	.catch(error => {
+		// 		console.error("Error:", error);
+		// 	});
 	};
 
 	const removeEcodrive = () => {
@@ -55,7 +70,8 @@ const Toggle = props => {
 				}
 			},
 			() => {
-				console.log("Removed Eco product");
+				console.log("Removed Ecodrive from cart");
+				setToggleState(false);
 			}
 		);
 	};
@@ -74,14 +90,14 @@ const Toggle = props => {
 			.then(response => response.json())
 			.then(data => {
 				console.log("Currently in Cart", data);
-				if (checkItemInCart(data.items)) {
+				if (checkItemInCart(data.items) && autoToggle === "false") {
 					setItemInCart(true);
 					setToggleState(true);
 				}
 			});
 
 		if (!itemInCart && autoToggle === "true") {
-			setToggleState(!toggleState);
+			addEcodrive();
 		}
 	}, []);
 

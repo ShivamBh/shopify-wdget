@@ -12,11 +12,11 @@ WidgetDivs.forEach(Div => {
 	const toggleProps = {
 		autoToggle: Div.getAttribute("data-autoToggle") || "false",
 		position: Div.getAttribute("data-position") || "center",
-		tooltip: Div.getAttribute("data-tooltip") || false,
+		tooltip: Div.getAttribute("data-tooltip") || "false",
 		variantId: Div.getAttribute("data-variantId") || null
 	};
 
-	console.log("This Div", Div);
+	console.log("Version", "1.0.12");
 
 	ReactDOM.render(
 		<React.StrictMode>
