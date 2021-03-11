@@ -8,22 +8,22 @@ import reportWebVitals from "./reportWebVitals";
 const WidgetDivs = document.querySelectorAll(".toggle-widget");
 
 // inject react instances to one or all of the entrypoint divs
-WidgetDivs.forEach(Div => {
-	const toggleProps = {
-		autoToggle: Div.getAttribute("data-autoToggle") || "false",
-		position: Div.getAttribute("data-position") || "center",
-		tooltip: Div.getAttribute("data-tooltip") || "false",
-		variantId: Div.getAttribute("data-variantId") || null
-	};
+WidgetDivs.forEach((Div) => {
+  const toggleProps = {
+    autoToggle: Div.getAttribute("data-autoToggle") || "false",
+    position: Div.getAttribute("data-position") || "center",
+    tooltip: Div.getAttribute("data-tooltip") || "false",
+    variantId: Div.getAttribute("data-variantId") || null,
+  };
 
-	console.log("Version", "1.0.12");
+  console.log("Version", "1.0.21");
 
-	ReactDOM.render(
-		<React.StrictMode>
-			<App toggleProps={toggleProps} />
-		</React.StrictMode>,
-		Div
-	);
+  ReactDOM.render(
+    <React.StrictMode>
+      <App toggleProps={toggleProps} />
+    </React.StrictMode>,
+    Div
+  );
 });
 
 // If you want to start measuring performance in your app, pass a function
