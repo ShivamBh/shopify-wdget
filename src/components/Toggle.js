@@ -108,8 +108,8 @@ const Toggle = (props) => {
               checkedIcon={false}
               boxShadow="0px 1px 5px rgba(0, 0, 0, 0.24)"
               activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.24)"
-              height={24}
-              width={48}
+              height={21}
+              width={42}
               className="react-switch"
             />
           </label>

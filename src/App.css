@@ -56,7 +56,7 @@
 }
 
 .toggle-container {
-	width: 256px;
+	width: 264px;
 	margin-bottom: 1rem;
 	display: flex;
 	justify-content: space-between;
@@ -74,17 +74,20 @@
 }
 
 .toggle-content {
-	padding: 0 1rem;
+	padding: 0 0.25rem;
+	
 }
 
 .toggle-title {
 	font-size: 1.125rem;
 	font-weight: 600;
 	margin-bottom: 0.125rem;
+	color: #113a32;
 }
 
 .toggle-subtitle {
 	font-size: 0.675rem;
+	color: #113a32;
 }
 
 /* .toggle-btn {

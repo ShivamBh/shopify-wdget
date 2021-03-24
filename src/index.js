@@ -16,7 +16,7 @@ WidgetDivs.forEach((Div) => {
     variantId: Div.getAttribute("data-variantId") || null,
   };
 
-  console.log("Version", "1.0.21");
+  console.log("Version", "1.0.22");
 
   ReactDOM.render(
     <React.StrictMode>
